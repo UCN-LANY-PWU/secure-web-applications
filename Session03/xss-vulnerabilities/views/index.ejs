@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XSS Vulnerable App</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://code.jquery.com">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -67,5 +69,14 @@
         <input type="text" name="q" placeholder="Search...">
         <button type="submit">Search</button>
     </form>
+
+    <script>
+        $(document).ready(function() {
+            // Example of a potential XSS attack
+            $('#message').on('click', function() {
+                alert('jquery loaded');
+            });
+        });
+    </script>
 </body>
 </html> 
